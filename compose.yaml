@@ -3,21 +3,25 @@ services:
   # don't forget to also uncomment 'depends_on' 'db' section in the rhdh service
   # and commentout or delete 'database' section in the app-config.local.yaml
 
-  # db:
-  #   container_name: db
-  #   image: "registry.access.redhat.com/rhel8/postgresql-16:latest"
-  #   volumes:
-  #     - "/var/lib/pgsql/data"
-  #   env_file:
-  #     - path: "./.env"
-  #       required: true
-  #   environment:
-  #     - POSTGRESQL_ADMIN_PASSWORD=${POSTGRES_PASSWORD}
-  #   healthcheck:
-  #     test: ["CMD", "pg_isready", "-U", "postgres"]
-  #     interval: 5s
-  #     timeout: 5s
-  #     retries: 5
+  db:
+    container_name: db
+    image: "registry.access.redhat.com/rhel8/postgresql-16:latest"
+    # volumes:
+      # - type: bind
+      #   source: "./tmp/psql/data"
+      #   target: "/var/lib/pgsql/data"
+      #   bind:
+      #     selinux: "Z"
+    env_file:
+      - path: "./.env"
+        required: true
+    environment:
+      - POSTGRESQL_ADMIN_PASSWORD=${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   rhdh:
     container_name: rhdh
@@ -49,8 +53,8 @@ services:
     depends_on:
       install-dynamic-plugins:
         condition: service_completed_successfully
-      # db:
-      #   condition: service_healthy
+      db:
+        condition: service_healthy
 
   install-dynamic-plugins:
     container_name: rhdh-plugins-installer

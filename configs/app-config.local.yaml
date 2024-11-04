@@ -29,9 +29,9 @@ backend:
     credentials: true
 
 # comment out the following 'database' section to use the PostgreSQL database
-  database:
-    client: better-sqlite3
-    connection: ':memory:'
+  # database:
+  #   client: better-sqlite3
+  #   connection: ':memory:'
 
   auth:
     keys:
