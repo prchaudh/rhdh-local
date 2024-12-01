@@ -5,8 +5,9 @@ services:
 
   db:
     container_name: db
-    image: "registry.access.redhat.com/rhel8/postgresql-16:latest"
-    # volumes:
+    image: "docker.io/postgres:14-alpine"
+    volumes:
+      - postgres-volume:/var/lib/pgsql/data
       # - type: bind
       #   source: "./tmp/psql/data"
       #   target: "/var/lib/pgsql/data"
@@ -95,4 +96,5 @@ services:
           nocopy: true
 
 volumes:
+  postgres-volume:
   dynamic-plugins-root:
