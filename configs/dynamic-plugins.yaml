@@ -1,7 +1,12 @@
 includes:
   - dynamic-plugins.default.yaml
-plugins: []
-
+plugins: 
+  - package: /opt/app-root/src/local-plugins/devit-plugin-scaffolder-backend-module-kubernetes-deploy-0.0.27.tgz
+    disabled: false
+    integrity: sha512-XoxkpYU6Qfau+/e6BIJBoTmT/TkhcXMm2SOEj/eNSKWYte+SqE8LACnTa7Iibo89RiS9xTD9pNVqEKF1LrQhFw==
+  - package: /opt/app-root/src/local-plugins/devit-plugin-scaffolder-backend-module-read-file-0.0.9.tgz
+    disabled: false
+    integrity: sha512-b2VgQ90YuwaKiy7yhmyM1cnl4mQz8BcXTTu6F9bu+1YMWHUsqC7QiuZh4/kfsJlgsAiySXBTCytMdMaDact8hg==
   # EXAMPLES:
   # loading plugin from host directory
   # - package: /opt/app-root/src/local-plugins/todo

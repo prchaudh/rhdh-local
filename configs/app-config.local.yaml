@@ -8,17 +8,20 @@ auth:
     #     clientId: ${AUTH_GITHUB_CLIENT_ID}
     #     clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
 
-# integrations:
-#   github:
-#     - host: github.com
-#       apps:
-#         - $include: github-app-credentials.yaml
+integrations:
+  gitlab:
+    - host: gitlab.cee.redhat.com
+      baseUrl: 'https://gitlab.cee.redhat.com'
+      apiBaseUrl: 'https://gitlab.cee.redhat.com/api/v4'
 
 app:
   title: RHDH
   baseUrl: ${BASE_URL}
 
 backend:
+  reading:
+    allow:
+      - host: '*.redhat.com'
   listen:
     port: 7007
   baseUrl: ${BASE_URL}
